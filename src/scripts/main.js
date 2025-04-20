@@ -11,8 +11,14 @@ const appendColumnButton = document.querySelector('.append-column');
 const removeColumnButton = document.querySelector('.remove-column');
 
 function updateButtons() {
-  const countRow = tbody.querySelectorAll('tr').length;
-  const countColumn = tbody.querySelector('tr').querySelectorAll('td').length;
+  const rows = tbody.querySelectorAll('tr');
+  const countRow = rows.length;
+
+  let countColumn = 0;
+
+  if (countRow > 0) {
+    countColumn = rows[0].querySelectorAll('td').length;
+  }
 
   appendRowButton.disabled = countRow >= 10;
   removeRowButton.disabled = countRow <= 2;
@@ -42,7 +48,7 @@ for (const button of buttons) {
     }
 
     if (targetButton.classList.contains('remove-row')) {
-      if (tbody.lastElementChild) {
+      if (tbody.rows.length > 2) {
         tbody.removeChild(tbody.lastElementChild);
       }
 

@@ -34,17 +34,20 @@ for (const button of buttons) {
       const tr = document.createElement('tr');
 
       const trOnTable = document.querySelector('tr');
-      const countOfTd = trOnTable.cells.length;
 
-      for (let i = 0; i < countOfTd; i++) {
-        const td = document.createElement('td');
+      if (trOnTable) {
+        const countOfTd = trOnTable.cells.length;
 
-        tr.append(td);
+        for (let i = 0; i < countOfTd; i++) {
+          const td = document.createElement('td');
+
+          tr.append(td);
+        }
+
+        tbody.appendChild(tr);
+
+        updateButtons();
       }
-
-      tbody.appendChild(tr);
-
-      updateButtons();
     }
 
     if (targetButton.classList.contains('remove-row')) {
